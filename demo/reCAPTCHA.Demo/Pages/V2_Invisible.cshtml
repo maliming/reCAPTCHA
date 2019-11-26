@@ -1,0 +1,28 @@
+﻿@page
+@model reCAPTCHA.Tests.Pages.V2_InvisibleModel
+@{
+    ViewData["Title"] = "V2_Invisible";
+}
+
+<pre>@Model.Result</pre>
+
+<recaptcha-script-v2 onload="onload" />
+
+<form method="POST">
+    <input id="token" name="token" type="text" />
+    <input id="submit" type="submit" value="submit" disabled="disabled" />
+</form>
+
+<recaptcha-div-v2 callback="callback" size="invisible" />
+
+<script>
+
+    function onload() {
+        grecaptcha.execute();
+    }
+
+    function callback(token) {
+        document.getElementById("token").value = token;
+        document.getElementById("submit").disabled = false;
+    }
+</script>

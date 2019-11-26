@@ -1,0 +1,23 @@
+﻿@page
+@model reCAPTCHA.Tests.Pages.V2_CheckboxModel
+@{
+    ViewData["Title"] = "V2_Checkbox";
+}
+
+<pre>@Model.Result</pre>
+
+<recaptcha-script-v2 />
+
+<form method="POST">
+    <input id="token" name="token" type="text" />
+    <input id="submit" type="submit" value="submit" disabled="disabled" />
+</form>
+
+<recaptcha-div-v2 callback="callback" />
+
+<script>
+    function callback(token) {
+        document.getElementById("token").value = token;
+        document.getElementById("submit").disabled = false;
+    }
+</script>
