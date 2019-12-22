@@ -16,4 +16,4 @@ jobs:
     - name: Build with dotnet
       run: dotnet build -c Release
     - name: Test with dotnet
-      run: dotnet build -c Release
+      run: dotnet test --no-restore
