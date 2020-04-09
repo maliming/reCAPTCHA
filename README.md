@@ -21,7 +21,7 @@ services.AddreCAPTCHAV3(x =>
 ### v3 razor page
 
 ```
-@addTagHelper *, reCAPTCHA
+@addTagHelper *, Owl.reCAPTCHA
 
 <form method="POST">
     <input id="token" name="token" type="text" />
@@ -30,13 +30,13 @@ services.AddreCAPTCHAV3(x =>
 
 <recaptcha-script-v3 />
 
-<recaptcha-script-v3-js action="login" callback="callback" />
-
 <script>
     function callback(token) {
         document.getElementById("token").value = token;
     }
 </script>
+
+<recaptcha-script-v3-js action="login" callback="callback" />
 ```
 
 ### v3 razor page model
@@ -89,9 +89,15 @@ services.AddreCAPTCHAV2(x =>
 ### v2 razor page(checkbox mode)
 
 ```
-@addTagHelper *, reCAPTCHA
+@addTagHelper *, Owl.reCAPTCHA
 
 <recaptcha-script-v2 />
+
+<script>
+    function callback(token) {
+        document.getElementById("token").value = token;
+    }
+</script>
 
 <form method="POST">
     <input id="token" name="token" type="text" />
@@ -99,27 +105,12 @@ services.AddreCAPTCHAV2(x =>
 </form>
 
 <recaptcha-div-v2 callback="callback" />
-
-<script>
-    function callback(token) {
-        document.getElementById("token").value = token;
-    }
-</script>
 ```
 
 ### v2 razor page(invisible mode)
 
 ```
-@addTagHelper *, reCAPTCHA
-
-<recaptcha-script-v2 onload="onload" />
-
-<form method="POST">
-    <input id="token" name="token" type="text" />
-    <input id="submit" type="submit" value="submit" />
-</form>
-
-<recaptcha-div-v2 callback="callback" size="invisible" />
+@addTagHelper *, Owl.reCAPTCHA
 
 <script>
     function onload() {
@@ -130,6 +121,35 @@ services.AddreCAPTCHAV2(x =>
         document.getElementById("token").value = token;
     }
 </script>
+
+<recaptcha-script-v2 onload="onload" />
+
+<form method="POST">
+    <input id="token" name="token" type="text" />
+    <input id="submit" type="submit" value="submit" />
+</form>
+
+<recaptcha-div-v2 callback="callback" size="invisible" />
+```
+
+### v2 razor page(invisible mode)
+
+```
+@addTagHelper *, Owl.reCAPTCHA
+
+<script>
+    function callback(token) {
+        document.getElementById("token").value = token;
+        document.getElementById("demo-form").submit();
+    }
+</script>
+
+<recaptcha-script-v2  />
+
+<form id="demo-form" method="POST">
+    <input id="token" name="token" type="text" />
+    <button recaptcha-v2-callback="callback" recaptcha-v2-size="invisible">Submit</button>
+</form>
 ```
 
 ### v2 razor page model
