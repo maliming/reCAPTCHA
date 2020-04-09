@@ -14,8 +14,6 @@
     <input id="submit" type="submit" value="submit" disabled="disabled" />
 </form>
 
-<recaptcha-script-v3 />
-<recaptcha-script-v3-js action="login" callback="callback" />
 
 <script>
     function callback(token) {
@@ -23,3 +21,6 @@
         document.getElementById("submit").disabled = false;
     }
 </script>
+
+<recaptcha-script-v3 />
+<recaptcha-script-v3-js action="login" callback="callback" />
