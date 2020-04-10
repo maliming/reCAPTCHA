@@ -6,23 +6,17 @@
 
 <pre>@Model.Result</pre>
 
-<recaptcha-script-v2 onload="onload" />
-
-<form method="POST">
-    <input id="token" name="token" type="text" />
-    <input id="submit" type="submit" value="submit" disabled="disabled" />
-</form>
-
-<recaptcha-div-v2 callback="callback" size="invisible" />
-
 <script>
-
-    function onload() {
-        grecaptcha.execute();
-    }
-
     function callback(token) {
         document.getElementById("token").value = token;
-        document.getElementById("submit").disabled = false;
+        document.getElementById("demo-form").submit();
     }
 </script>
+
+<recaptcha-script-v2  />
+
+<form id="demo-form" method="POST">
+    <input id="token" name="token" type="text" />
+    <button recaptcha-v2-callback="callback" recaptcha-v2-size="invisible">Submit</button>
+</form>
+

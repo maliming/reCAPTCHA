@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29509.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "reCAPTCHA", "src\reCAPTCHA\reCAPTCHA.csproj", "{895D9EB4-9FD9-4F5B-97C8-9907A8CEF578}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Owl.reCAPTCHA", "src\Owl.reCAPTCHA\Owl.reCAPTCHA.csproj", "{895D9EB4-9FD9-4F5B-97C8-9907A8CEF578}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{653DC288-4305-46AF-9D6E-53C9BA50110D}"
 EndProject

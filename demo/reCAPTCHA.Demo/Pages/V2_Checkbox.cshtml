@@ -13,11 +13,11 @@
     <input id="submit" type="submit" value="submit" disabled="disabled" />
 </form>
 
-<recaptcha-div-v2 callback="callback" />
-
 <script>
     function callback(token) {
         document.getElementById("token").value = token;
         document.getElementById("submit").disabled = false;
     }
 </script>
+
+<recaptcha-div-v2 callback="callback" />
