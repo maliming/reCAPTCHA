@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Razor.TagHelpers;
 using Microsoft.Extensions.Options;
 
-namespace reCAPTCHA.V2.TagHelpers
+namespace Owl.reCAPTCHA.v2.TagHelpers
 {
     [HtmlTargetElement("recaptcha-div-v2", TagStructure = TagStructure.WithoutEndTag)]
     public class reCAPTCHAV2DivTagHelper : TagHelper

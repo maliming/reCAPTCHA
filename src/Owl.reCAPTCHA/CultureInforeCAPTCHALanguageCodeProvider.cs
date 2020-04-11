@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 
-namespace reCAPTCHA
+namespace Owl.reCAPTCHA
 {
     public class CultureInforeCAPTCHALanguageCodeProvider : IreCAPTCHALanguageCodeProvider
     {

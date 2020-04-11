@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Razor.TagHelpers;
 using Microsoft.Extensions.Options;
 
-namespace reCAPTCHA.V2.TagHelpers
+namespace Owl.reCAPTCHA.v2.TagHelpers
 {
     [HtmlTargetElement("*", Attributes = BadgeAttributeName)]
     [HtmlTargetElement("*", Attributes = ThemeAttributeName)]

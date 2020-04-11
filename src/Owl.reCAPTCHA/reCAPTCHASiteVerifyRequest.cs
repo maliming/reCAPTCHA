@@ -1,4 +1,4 @@
-﻿namespace reCAPTCHA
+﻿namespace Owl.reCAPTCHA
 {
     public class reCAPTCHASiteVerifyRequest
     {
