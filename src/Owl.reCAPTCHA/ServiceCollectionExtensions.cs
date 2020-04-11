@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Net.Http;
 using Microsoft.Extensions.DependencyInjection;
-using reCAPTCHA.v2;
-using reCAPTCHA.v3;
+using Owl.reCAPTCHA.v2;
+using Owl.reCAPTCHA.v3;
 
-namespace reCAPTCHA
+namespace Owl.reCAPTCHA
 {
     public static class ServiceCollectionExtensions
     {

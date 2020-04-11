@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 
-namespace reCAPTCHA.v3
+namespace Owl.reCAPTCHA.v3
 {
     public class reCAPTCHASiteVerifyV3 : IreCAPTCHASiteVerifyV3
     {

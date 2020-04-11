@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Globalization;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using Microsoft.Extensions.Options;
-using reCAPTCHA.v3;
 
-namespace reCAPTCHA.V2.TagHelpers
+namespace Owl.reCAPTCHA.v2.TagHelpers
 {
     [HtmlTargetElement("recaptcha-script-v2", TagStructure = TagStructure.WithoutEndTag)]
     public class reCAPTCHAV2ScriptTagHelper : TagHelper

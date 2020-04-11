@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace reCAPTCHA
+namespace Owl.reCAPTCHA
 {
     public static class StringExtensions
     {

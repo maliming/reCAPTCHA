@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Razor.TagHelpers;
 using Microsoft.Extensions.Options;
 
-namespace reCAPTCHA.v3.TagHelpers
+namespace Owl.reCAPTCHA.v3.TagHelpers
 {
     [HtmlTargetElement("recaptcha-script-v3-js", TagStructure = TagStructure.WithoutEndTag)]
     public class reCAPTCHAV3ScriptJsTagHelper : TagHelper
@@ -21,9 +21,11 @@ namespace reCAPTCHA.v3.TagHelpers
         {
             /*
             grecaptcha.ready(function() {
-                grecaptcha.execute('_reCAPTCHA_site_key_', {action: 'homepage'}).then(function(token) {
+                grecaptcha.reExecute = function(){
+                    grecaptcha.execute('_reCAPTCHA_site_key_', {action: 'homepage'}).then(function(token) {
                    ...
-                });
+                })();
+                }
             });
             */
 
@@ -31,10 +33,13 @@ namespace reCAPTCHA.v3.TagHelpers
             output.TagMode = TagMode.StartTagAndEndTag;
 
             var script = "grecaptcha.ready(function(){ " +
+                         "grecaptcha.reExecute = function(){" +
                              "grecaptcha.execute('" + _options.SiteKey + "'" + (string.IsNullOrWhiteSpace(Action) ? "" : ",{action:'" + Action + "'}") + ")" +
                                  ".then(function(token){" +
                                     Callback + "(token)" +
                                  "})" +
+                            "};" +
+                           "grecaptcha.reExecute()" +
                          "});";
             output.Content.SetHtmlContent(script);
         }

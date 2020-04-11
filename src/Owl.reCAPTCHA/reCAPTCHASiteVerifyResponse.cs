@@ -1,7 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
 
-namespace reCAPTCHA
+namespace Owl.reCAPTCHA
 {
     public class reCAPTCHASiteVerifyResponse
     {

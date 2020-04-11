@@ -1,9 +1,10 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Newtonsoft.Json;
-using reCAPTCHA.v3;
+using Owl.reCAPTCHA;
+using Owl.reCAPTCHA.v3;
 
-namespace reCAPTCHA.Tests.Pages
+namespace reCAPTCHA.Demo.Pages
 {
     public class V3Model : PageModel
     {
