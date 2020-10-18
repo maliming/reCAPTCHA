@@ -1,0 +1,28 @@
+@page
+@using Microsoft.Extensions.Options
+@using Owl.reCAPTCHA
+@model reCAPTCHA.Demo.Pages.V3_ProgrammaticallyModel
+@inject IOptions<reCAPTCHAOptions> Options
+@{
+    ViewData["Title"] = "V3";
+}
+
+<pre>@Model.Result</pre>
+
+<form method="POST" id="recaptchaForm">
+    <input id="token" name="token" type="text" />
+    <input id="submitBtn" type="submit" value="submit" />
+</form>
+
+<script>
+    document.getElementById("submitBtn").onclick = function(e) {
+        e.preventDefault();
+        grecaptcha.reExecute(function(token) {
+            document.getElementById("token").value = token;
+            document.getElementById("recaptchaForm").submit();
+        })
+    };
+</script>
+
+<recaptcha-script-v3 />
+<recaptcha-script-v3-js action="login" execute="false" />
