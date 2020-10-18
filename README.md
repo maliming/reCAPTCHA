@@ -39,6 +39,28 @@ services.AddreCAPTCHAV3(x =>
 <recaptcha-script-v3-js action="login" callback="callback" />
 ```
 
+```
+@addTagHelper *, Owl.reCAPTCHA
+
+<form method="POST" id="recaptchaForm">
+    <input id="token" name="token" type="text" />
+    <input id="submitBtn" type="submit" value="submit" />
+</form>
+
+<script>
+    document.getElementById("submitBtn").onclick = function(e) {
+        e.preventDefault();
+        grecaptcha.reExecute(function(token) {
+            document.getElementById("token").value = token;
+            document.getElementById("recaptchaForm").submit();
+        })
+    };
+</script>
+
+<recaptcha-script-v3 />
+<recaptcha-script-v3-js action="login" execute="false" />
+```
+
 ### v3 razor page model
 
 ```
@@ -158,7 +180,7 @@ services.AddreCAPTCHAV2(x =>
 public class V2_CheckboxModel : PageModel
 {
 	private readonly IreCAPTCHASiteVerifyV2 _siteVerify;
-	
+
 	public V2_CheckboxModel(IreCAPTCHASiteVerifyV2 siteVerify)
 	{
 		_siteVerify = siteVerify;
