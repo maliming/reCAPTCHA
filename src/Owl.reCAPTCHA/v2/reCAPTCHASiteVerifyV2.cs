@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
-using Newtonsoft.Json;
 
 namespace Owl.reCAPTCHA.v2
 {
@@ -31,8 +31,9 @@ namespace Owl.reCAPTCHA.v2
             var v3Response = await _client.PostAsync("recaptcha/api/siteverify", content);
             if (v3Response.IsSuccessStatusCode)
             {
-                return JsonConvert.DeserializeObject<reCAPTCHASiteVerifyResponse>(
-                    await v3Response.Content.ReadAsStringAsync());
+                var options = new JsonSerializerOptions();
+                options.Converters.Add(new reCAPTCHASiteVerifyResponseJsonConverter());
+                return JsonSerializer.Deserialize<reCAPTCHASiteVerifyResponse>(await v3Response.Content.ReadAsStringAsync(), options);
             }
 
             return new reCAPTCHASiteVerifyResponse
