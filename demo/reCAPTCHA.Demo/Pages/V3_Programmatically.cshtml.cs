@@ -1,6 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.Text.Json;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Newtonsoft.Json;
 using Owl.reCAPTCHA;
 using Owl.reCAPTCHA.v3;
 
@@ -22,10 +22,13 @@ namespace reCAPTCHA.Demo.Pages
             var response = await _siteVerify.Verify(new reCAPTCHASiteVerifyRequest
             {
                 Response = token,
-                RemoteIp = HttpContext.Connection.RemoteIpAddress.ToString()
+                RemoteIp = HttpContext.Connection.RemoteIpAddress?.ToString()
             });
 
-            Result = JsonConvert.SerializeObject(response, Formatting.Indented);
+            Result = JsonSerializer.Serialize(response, new JsonSerializerOptions
+            {
+                WriteIndented = true
+            });
         }
     }
 }
