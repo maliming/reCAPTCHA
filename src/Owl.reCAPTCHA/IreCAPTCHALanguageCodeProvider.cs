@@ -1,7 +1,6 @@
-﻿namespace Owl.reCAPTCHA
+﻿namespace Owl.reCAPTCHA;
+
+public interface IreCAPTCHALanguageCodeProvider
 {
-    public interface IreCAPTCHALanguageCodeProvider
-    {
-        string GetLanguageCode();
-    }
+    string GetLanguageCode();
 }

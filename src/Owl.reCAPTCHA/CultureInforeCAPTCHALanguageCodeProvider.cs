@@ -1,12 +1,11 @@
 ﻿using System.Globalization;
 
-namespace Owl.reCAPTCHA
+namespace Owl.reCAPTCHA;
+
+public class CultureInforeCAPTCHALanguageCodeProvider : IreCAPTCHALanguageCodeProvider
 {
-    public class CultureInforeCAPTCHALanguageCodeProvider : IreCAPTCHALanguageCodeProvider
+    public string GetLanguageCode()
     {
-        public string GetLanguageCode()
-        {
-            return CultureInfo.CurrentUICulture.ToString();
-        }
+        return CultureInfo.CurrentUICulture.ToString();
     }
 }

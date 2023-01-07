@@ -5,45 +5,44 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 
-namespace Owl.reCAPTCHA.v3
+namespace Owl.reCAPTCHA.v3;
+
+public class reCAPTCHASiteVerifyV3 : IreCAPTCHASiteVerifyV3
 {
-    public class reCAPTCHASiteVerifyV3 : IreCAPTCHASiteVerifyV3
+    private readonly HttpClient _client;
+    private readonly reCAPTCHAOptions _options;
+
+    public reCAPTCHASiteVerifyV3(IOptionsSnapshot<reCAPTCHAOptions> optionsAccessor, IHttpClientFactory clientFactory)
     {
-        private readonly HttpClient _client;
-        private readonly reCAPTCHAOptions _options;
+        _options = optionsAccessor.Get(reCAPTCHAConsts.V3);
+        _client = clientFactory.CreateClient(reCAPTCHAConsts.V3);
+        _client.BaseAddress = new Uri(_options.VerifyBaseUrl);
+    }
 
-        public reCAPTCHASiteVerifyV3(IOptionsSnapshot<reCAPTCHAOptions> optionsAccessor, IHttpClientFactory clientFactory)
+    public async Task<reCAPTCHASiteVerifyV3Response> Verify(reCAPTCHASiteVerifyRequest request)
+    {
+        var content = new FormUrlEncodedContent(new[]
         {
-            _options = optionsAccessor.Get(reCAPTCHAConsts.V3);
-            _client = clientFactory.CreateClient(reCAPTCHAConsts.V3);
-            _client.BaseAddress = new Uri(_options.VerifyBaseUrl);
+            new KeyValuePair<string, string>("secret", _options.SiteSecret),
+            new KeyValuePair<string, string>("response", request.Response),
+            new KeyValuePair<string, string>("remoteip", request.RemoteIp)
+        });
+
+        var v3Response = await _client.PostAsync("recaptcha/api/siteverify", content);
+        if (v3Response.IsSuccessStatusCode)
+        {
+            var options = new JsonSerializerOptions();
+            options.Converters.Add(new reCAPTCHASiteVerifyResponseJsonConverter());
+            return JsonSerializer.Deserialize<reCAPTCHASiteVerifyV3Response>(await v3Response.Content.ReadAsStringAsync(), options);
         }
 
-        public async Task<reCAPTCHASiteVerifyV3Response> Verify(reCAPTCHASiteVerifyRequest request)
+        return new reCAPTCHASiteVerifyV3Response
         {
-            var content = new FormUrlEncodedContent(new[]
+            Success = false,
+            ErrorCodes = new[]
             {
-                new KeyValuePair<string, string>("secret", _options.SiteSecret),
-                new KeyValuePair<string, string>("response", request.Response),
-                new KeyValuePair<string, string>("remoteip", request.RemoteIp)
-            });
-
-            var v3Response = await _client.PostAsync("recaptcha/api/siteverify", content);
-            if (v3Response.IsSuccessStatusCode)
-            {
-                var options = new JsonSerializerOptions();
-                options.Converters.Add(new reCAPTCHASiteVerifyResponseJsonConverter());
-                return JsonSerializer.Deserialize<reCAPTCHASiteVerifyV3Response>(await v3Response.Content.ReadAsStringAsync(), options);
+                "http-status-error-" + v3Response.StatusCode
             }
-
-            return new reCAPTCHASiteVerifyV3Response
-            {
-                Success = false,
-                ErrorCodes = new[]
-                {
-                    "http-status-error-" + v3Response.StatusCode
-                }
-            };
-        }
+        };
     }
 }

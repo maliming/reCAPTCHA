@@ -4,31 +4,30 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Owl.reCAPTCHA;
 using Owl.reCAPTCHA.v3;
 
-namespace reCAPTCHA.Demo.Pages
+namespace reCAPTCHA.Demo.Pages;
+
+public class V3Model : PageModel
 {
-    public class V3Model : PageModel
+    private readonly IreCAPTCHASiteVerifyV3 _siteVerify;
+
+    public string Result { get; set; }
+
+    public V3Model(IreCAPTCHASiteVerifyV3 siteVerify)
     {
-        private readonly IreCAPTCHASiteVerifyV3 _siteVerify;
+        _siteVerify = siteVerify;
+    }
 
-        public string Result { get; set; }
-
-        public V3Model(IreCAPTCHASiteVerifyV3 siteVerify)
+    public async Task OnPostAsync(string token)
+    {
+        var response = await _siteVerify.Verify(new reCAPTCHASiteVerifyRequest
         {
-            _siteVerify = siteVerify;
-        }
+            Response = token,
+            RemoteIp = HttpContext.Connection.RemoteIpAddress?.ToString()
+        });
 
-        public async Task OnPostAsync(string token)
+        Result = JsonSerializer.Serialize(response, new JsonSerializerOptions
         {
-            var response = await _siteVerify.Verify(new reCAPTCHASiteVerifyRequest
-            {
-                Response = token,
-                RemoteIp = HttpContext.Connection.RemoteIpAddress?.ToString()
-            });
-
-            Result = JsonSerializer.Serialize(response, new JsonSerializerOptions
-            {
-                WriteIndented = true
-            });
-        }
+            WriteIndented = true
+        });
     }
 }

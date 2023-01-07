@@ -1,9 +1,8 @@
 ﻿using System.Threading.Tasks;
 
-namespace Owl.reCAPTCHA.v3
+namespace Owl.reCAPTCHA.v3;
+
+public interface IreCAPTCHASiteVerifyV3
 {
-    public interface IreCAPTCHASiteVerifyV3
-    {
-        Task<reCAPTCHASiteVerifyV3Response> Verify(reCAPTCHASiteVerifyRequest request);
-    }
+    Task<reCAPTCHASiteVerifyV3Response> Verify(reCAPTCHASiteVerifyRequest request);
 }

@@ -1,20 +1,20 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <RootNamespace>Owl.reCAPTCHA</RootNamespace>
     <PackageId>Owl.reCAPTCHA</PackageId>
     <Authors>maliming</Authors>
-    <Description>reCAPTCHA for Asp Net Core 5.0</Description>
+    <Description>reCAPTCHA for ASP NET Core</Description>
     <PackageProjectUrl>https://github.com/maliming/reCAPTCHA</PackageProjectUrl>
     <RepositoryUrl>https://github.com/maliming/reCAPTCHA</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <Version>0.5.0</Version>
+    <Version>7.0.0</Version>
     <IsPackable>true</IsPackable>
     <OutputType>Library</OutputType>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageVersion>0.5.0</PackageVersion>
+    <PackageVersion>7.0.0</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>

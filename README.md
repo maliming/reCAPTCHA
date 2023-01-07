@@ -1,5 +1,5 @@
 # Owl.reCAPTCHA
-Google reCAPTCHA for Asp Net Core 6.0 (v3 and v2)
+Google reCAPTCHA for ASP NET Core 7.0 (v3 and v2)
 
 # Install-Package
 
