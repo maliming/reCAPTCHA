@@ -23,25 +23,6 @@ services.AddreCAPTCHAV3(x =>
 ```
 @addTagHelper *, Owl.reCAPTCHA
 
-<form method="POST">
-    <input id="token" name="token" type="text" />
-    <input id="submit" type="submit" value="submit" />
-</form>
-
-<recaptcha-script-v3 />
-
-<script>
-    function callback(token) {
-        document.getElementById("token").value = token;
-    }
-</script>
-
-<recaptcha-script-v3-js action="login" callback="callback" />
-```
-
-```
-@addTagHelper *, Owl.reCAPTCHA
-
 <form method="POST" id="recaptchaForm">
     <input id="token" name="token" type="text" />
     <input id="submitBtn" type="submit" value="submit" />
