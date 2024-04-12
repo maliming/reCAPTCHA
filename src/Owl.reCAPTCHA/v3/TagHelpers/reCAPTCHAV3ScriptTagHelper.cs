@@ -8,6 +8,8 @@ namespace Owl.reCAPTCHA.v3.TagHelpers;
 [HtmlTargetElement("recaptcha-script-v3", TagStructure = TagStructure.WithoutEndTag)]
 public class reCAPTCHAV3ScriptTagHelper : TagHelper
 {
+    public bool HideBadge { get; set; }
+
     private readonly reCAPTCHAOptions _options;
 
     private readonly IreCAPTCHALanguageCodeProvider _reCAPTCHALanguageCodeProvider;
@@ -24,12 +26,15 @@ public class reCAPTCHAV3ScriptTagHelper : TagHelper
         /*
             <script src="https://www.google.com/recaptcha/api.js?render=_reCAPTCHA_site_key"></script>
         */
-
-        output.TagName = "script";
-        output.TagMode = TagMode.StartTagAndEndTag;
+        output.TagName = "";
 
         var src = $"{_options.VerifyBaseUrl.RemovePostFix(StringComparison.OrdinalIgnoreCase, "/")}/recaptcha/api.js?hl={_reCAPTCHALanguageCodeProvider.GetLanguageCode()}&render={_options.SiteKey}";
 
-        output.Attributes.Add(new TagHelperAttribute("src", new HtmlString(src)));
+        output.Content.SetHtmlContent($"<script src=\"{src}\"></script>");
+
+        if (HideBadge)
+        {
+            output.PostElement.SetHtmlContent("<style>.grecaptcha-badge{visibility:hidden;}</style>");
+        }
     }
 }

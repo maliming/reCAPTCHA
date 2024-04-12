@@ -16,11 +16,13 @@ public class reCAPTCHAV2ScriptTagHelper : TagHelper
 
     public string Render { get; set; }
 
+    public bool HideBadge { get; set; }
+
     private readonly reCAPTCHAOptions _options;
 
     private readonly IreCAPTCHALanguageCodeProvider _reCAPTCHALanguageCodeProvider;
 
-    public reCAPTCHAV2ScriptTagHelper(IOptionsSnapshot<reCAPTCHAOptions> optionsAccessor, 
+    public reCAPTCHAV2ScriptTagHelper(IOptionsSnapshot<reCAPTCHAOptions> optionsAccessor,
         IreCAPTCHALanguageCodeProvider reCaptchaLanguageCodeProvider)
     {
         _options = optionsAccessor.Get(reCAPTCHAConsts.V2);
@@ -33,8 +35,7 @@ public class reCAPTCHAV2ScriptTagHelper : TagHelper
             <script src="https://www.google.com/recaptcha/api.js" async defer></script>
         */
 
-        output.TagName = "script";
-        output.TagMode = TagMode.StartTagAndEndTag;
+        output.TagName = "";
 
         var src = $"{_options.VerifyBaseUrl.RemovePostFix(StringComparison.OrdinalIgnoreCase, "/")}/recaptcha/api.js?" +
                   $"hl={_reCAPTCHALanguageCodeProvider.GetLanguageCode()}";
@@ -47,15 +48,14 @@ public class reCAPTCHAV2ScriptTagHelper : TagHelper
             src += $"&render={Render}";
         }
 
-        output.Attributes.Add(new TagHelperAttribute("src", new HtmlString(src)));
+        var scriptAsync = ScriptAsync ? "async" : string.Empty;
+        var scriptDefer = ScriptDefer ? "defer" : string.Empty;
 
-        if (ScriptAsync)
+        output.Content.SetHtmlContent($"<script {scriptAsync} {scriptDefer} src=\"{src}\"></script>");
+
+        if (HideBadge)
         {
-            output.Attributes.Add(new TagHelperAttribute("async"));
-        }
-        if (ScriptDefer)
-        {
-            output.Attributes.Add(new TagHelperAttribute("defer"));
+            output.PostElement.SetHtmlContent("<style>.grecaptcha-badge{visibility:hidden;}</style>");
         }
     }
 }
