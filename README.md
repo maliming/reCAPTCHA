@@ -1,5 +1,5 @@
 # Owl.reCAPTCHA
-Google reCAPTCHA for ASP NET Core 7.0 (v3 and v2)
+Google reCAPTCHA for ASP NET Core (v3 and v2)
 
 # Install-Package
 
@@ -30,6 +30,12 @@ services.AddreCAPTCHAV3(x =>
 
 <recaptcha-script-v3 />
 
+@*
+    Hide-the-recaptcha-badge
+    https://developers.google.com/recaptcha/docs/faq#id-like-to-hide-the-recaptcha-badge.-what-is-allowed
+    <recaptcha-script-v3 hide-badge="true" />
+*@
+
 <script>
     function callback(token) {
         document.getElementById("token").value = token;
@@ -58,6 +64,13 @@ services.AddreCAPTCHAV3(x =>
 </script>
 
 <recaptcha-script-v3 />
+
+@*
+    Hide-the-recaptcha-badge
+    https://developers.google.com/recaptcha/docs/faq#id-like-to-hide-the-recaptcha-badge.-what-is-allowed
+    <recaptcha-script-v3 hide-badge="true" />
+*@
+
 <recaptcha-script-v3-js action="login" execute="false" />
 ```
 
@@ -146,6 +159,12 @@ services.AddreCAPTCHAV2(x =>
 
 <recaptcha-script-v2 onload="onload" />
 
+@*
+    Hide-the-recaptcha-badge
+    https://developers.google.com/recaptcha/docs/faq#id-like-to-hide-the-recaptcha-badge.-what-is-allowed
+    <recaptcha-script-v2 hide-badge="true" />
+*@
+
 <form method="POST">
     <input id="token" name="token" type="text" />
     <input id="submit" type="submit" value="submit" />
@@ -167,6 +186,12 @@ services.AddreCAPTCHAV2(x =>
 </script>
 
 <recaptcha-script-v2  />
+
+@*
+    Hide-the-recaptcha-badge
+    https://developers.google.com/recaptcha/docs/faq#id-like-to-hide-the-recaptcha-badge.-what-is-allowed
+    <recaptcha-script-v2 hide-badge="true" />
+*@
 
 <form id="demo-form" method="POST">
     <input id="token" name="token" type="text" />
