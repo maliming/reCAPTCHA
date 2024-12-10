@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
     <RootNamespace>Owl.reCAPTCHA</RootNamespace>
     <PackageId>Owl.reCAPTCHA</PackageId>
     <Authors>maliming</Authors>
@@ -9,12 +9,12 @@
     <PackageProjectUrl>https://github.com/maliming/reCAPTCHA</PackageProjectUrl>
     <RepositoryUrl>https://github.com/maliming/reCAPTCHA</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <Version>8.0.0</Version>
+    <Version>9.0.0</Version>
     <IsPackable>true</IsPackable>
     <OutputType>Library</OutputType>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageVersion>8.0.0</PackageVersion>
+    <PackageVersion>9.0.0</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
